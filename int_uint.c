@@ -29,9 +29,20 @@ static char	*uitoa(unsigned int n)
 	char	*str
 	int	len;
 
-	len = numcounter;
+	len = numlen;
 	str = (char *)malloc(len + 1 sizeof(char));
 	if (str == NULL)
 		return (NULL);
 	str[len] = '\0';
+	while (len > 0)
+	{
+		str[--len] = n % 10 + '0';
+		n = n / 10;
+	}
+	return (str);
+}
+
+static int	numlen(unsigned int n)
+{
+	
 }
