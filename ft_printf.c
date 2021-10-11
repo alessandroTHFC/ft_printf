@@ -52,7 +52,7 @@ void	typechecker(const char c, t_bag *arg_counter)
 		isun_int(c);
 	else if (c == 'p')
 		ispointer(c);
-	else if (c == 'x' || c == X)
+	else if (c == 'x' || c == 'X')
 		ishex(c);
 	else if (c == '%')
 	{

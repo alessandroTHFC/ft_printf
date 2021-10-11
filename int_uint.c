@@ -29,7 +29,7 @@ static char	*uitoa(unsigned int n)
 	char	*str
 	int	len;
 
-	len = numlen;
+	len = numlen(n);
 	str = (char *)malloc(len + 1 sizeof(char));
 	if (str == NULL)
 		return (NULL);
@@ -44,5 +44,12 @@ static char	*uitoa(unsigned int n)
 
 static int	numlen(unsigned int n)
 {
-	
+	int	len;
+
+	len = 1;
+	while (n > 9)
+	{
+		n = n / 10;
+		len++
+	}
 }
