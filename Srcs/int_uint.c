@@ -1,9 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   int_uint.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apangraz <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/12 11:47:31 by apangraz          #+#    #+#             */
+/*   Updated: 2021/10/12 11:47:31 by apangraz         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-void	isint(t_bag arg_count)
+static char	*uitoa(unsigned int n);
+static int	numlen(unsigned int n);
+
+void	isint(t_bag *arg_count)
 {
 	char	*str;
-	int	value;
+	int		value;
 
 	value = va_arg(arg_count->args, int);
 	str = ft_itoa(value);
@@ -12,12 +27,12 @@ void	isint(t_bag arg_count)
 	free(str);
 }
 
-void	isun_int(t_bag *args)
+void	isun_int(t_bag *arg_count)
 {
-	char	*str;
-	int	value;
+	char			*str;
+	unsigned int	value;
 
-	value = va_arg(arg_count->args, unsigned int)
+	value = va_arg(arg_count->args, unsigned int);
 	str = uitoa(value);
 	ft_putstr_fd(str, 1);
 	arg_count->counter += ft_strlen(str);
@@ -26,11 +41,11 @@ void	isun_int(t_bag *args)
 
 static char	*uitoa(unsigned int n)
 {
-	char	*str
-	int	len;
+	char	*str;
+	int		len;
 
 	len = numlen(n);
-	str = (char *)malloc(len + 1 sizeof(char));
+	str = (char *)malloc(len + 1 * sizeof(char));
 	if (str == NULL)
 		return (NULL);
 	str[len] = '\0';
@@ -50,6 +65,7 @@ static int	numlen(unsigned int n)
 	while (n > 9)
 	{
 		n = n / 10;
-		len++
+		len++;
 	}
+	return (len);
 }

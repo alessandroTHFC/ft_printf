@@ -1,9 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apangraz <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/12 11:47:31 by apangraz          #+#    #+#             */
+/*   Updated: 2021/10/12 11:47:31 by apangraz         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
+
+static t_bag	*initialise(void);
+void			typechecker(const char c, t_bag *arg_count);
 
 int	ft_prinft(const char *str, ...)
 {
 	t_bag	*arg_count;
-	int	totalprinted;
+	int		totalprinted;
 
 	arg_count = initialise();
 	totalprinted = 0;
@@ -13,14 +28,14 @@ int	ft_prinft(const char *str, ...)
 		if (*str == '%')
 		{
 			str++;
-			typecheck(str, arg_count);
-			str++
+			typechecker(*str, arg_count);
+			str++;
 		}
-		else 
+		else
 		{
-			ft_putchar_fd(*str++, 1)
+			ft_putchar_fd(*str++, 1);
 			arg_count->counter++;
-			str++
+			str++;
 		}
 	}
 	totalprinted = arg_count->counter;
@@ -31,29 +46,29 @@ int	ft_prinft(const char *str, ...)
 
 static t_bag	*initialise(void)
 {
-	t_bag	*arg_counter;
+	t_bag	*arg_count;
 
-	arg_counter = (t_bag *)malloc(sizeof(t_bag));
-	if (arg_counter == NULL)
+	arg_count = (t_bag *)malloc(sizeof(t_bag));
+	if (arg_count == NULL)
 		return (NULL);
 	arg_count->counter = 0;
-	return (arg_counter);
+	return (arg_count);
 }
 
-void	typechecker(const char c, t_bag *arg_counter)
+void	typechecker(const char c, t_bag *arg_count)
 {
 	if (c == 'i' || c == 'd')
-		isint(c);
+		isint(arg_count);
 	else if (c == 'c')
-		ischar(c);
+		ischar(arg_count);
 	else if (c == 's')
-		isstring(c);
+		isstring(arg_count);
 	else if (c == 'u')
-		isun_int(c);
+		isun_int(arg_count);
 	else if (c == 'p')
-		ispointer(c);
+		ispointer(arg_count);
 	else if (c == 'x' || c == 'X')
-		ishex(c);
+		ishex(arg_count, c);
 	else if (c == '%')
 	{
 		ft_putchar_fd('%', 1);

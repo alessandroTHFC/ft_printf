@@ -1,10 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hex.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apangraz <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/12 11:47:31 by apangraz          #+#    #+#             */
+/*   Updated: 2021/10/12 11:47:31 by apangraz         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-void	ispointer(t_bag arg_count)
+static char	*numlen(unsigned long n, int *len);
+
+void	ispointer(t_bag *arg_count)
 {
-	int	len;
-	char	*str;
-	unsigned long n;
+	int				len;
+	char			*str;
+	unsigned long	n;
 
 	n = va_arg(arg_count->args, unsigned long);
 	len = 1;
@@ -26,11 +40,11 @@ void	ispointer(t_bag arg_count)
 	free(str);
 }
 
-void	ishex(t_bag arg_count, char c)
+void	ishex(t_bag *arg_count, char c)
 {
 	unsigned int	n;
-	int	len;
-	char	*str;
+	int				len;
+	char			*str;
 
 	n = va_arg(arg_count->args, unsigned int);
 	len = 1;
@@ -52,7 +66,7 @@ void	ishex(t_bag arg_count, char c)
 	free(str);
 }
 
-static char	numlen(unsigned long n, int *len)
+static char	*numlen(unsigned long n, int *len)
 {
 	char	*str;
 
@@ -63,7 +77,7 @@ static char	numlen(unsigned long n, int *len)
 	}
 	str = (char *)malloc((*len + 1) * sizeof(char));
 	if (str == NULL)
-		return (NULL)
+		return (NULL);
 	str[*len] = '\0';
 	return (str);
 }

@@ -1,18 +1,30 @@
-#ifndef	FT_PRINTF_H
-# define	FT_PRINTF_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apangraz <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/12 11:54:50 by apangraz          #+#    #+#             */
+/*   Updated: 2021/10/12 11:54:50 by apangraz         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 # include "libft.h"
 # include <stdarg.h>
 # include <stdio.h>
 # include <stdlib.h>
 
-typdef struct s_bag
+typedef struct s_bag
 {
 	va_list	args;
-	int	counter;
+	int		counter;
 }		t_bag;
 
-int	ft_printf(const char *str, ...)
+int		ft_printf(const char *str, ...);
 void	ischar(t_bag *arg_count);
 void	isstring(t_bag *arg_count);
 void	isint(t_bag *arg_count);
