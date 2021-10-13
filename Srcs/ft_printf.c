@@ -6,7 +6,7 @@
 /*   By: apangraz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 11:47:31 by apangraz          #+#    #+#             */
-/*   Updated: 2021/10/12 11:47:31 by apangraz         ###   ########.fr       */
+/*   Updated: 2021/10/13 15:57:51 by apangraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,28 @@
 static t_bag	*initialise(void);
 void			typechecker(const char c, t_bag *arg_count);
 
-int	ft_prinft(const char *str, ...)
+int	ft_printf(const char *str, ...)
 {
 	t_bag	*arg_count;
 	int		totalprinted;
+	int		i;
 
+	i = 0;
 	arg_count = initialise();
 	totalprinted = 0;
 	va_start(arg_count->args, str);
-	while (*str != '\0')
+	while (str[i] != '\0')
 	{
-		if (*str == '%')
+		if (str[i] == '%')
 		{
-			str++;
-			typechecker(*str, arg_count);
-			str++;
+			typechecker(str[++i], arg_count);
 		}
 		else
 		{
-			ft_putchar_fd(*str++, 1);
+			ft_putchar_fd(str[i], 1);
 			arg_count->counter++;
-			str++;
 		}
+		i++;
 	}
 	totalprinted = arg_count->counter;
 	va_end(arg_count->args);

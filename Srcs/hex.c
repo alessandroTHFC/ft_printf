@@ -6,7 +6,7 @@
 /*   By: apangraz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 11:47:31 by apangraz          #+#    #+#             */
-/*   Updated: 2021/10/12 11:47:31 by apangraz         ###   ########.fr       */
+/*   Updated: 2021/10/13 16:00:30 by apangraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ void	ispointer(t_bag *arg_count)
 	len = 1;
 	str = numlen(n, &len);
 	ft_putstr_fd("0x", 1);
-	arg_count->counter++;
+	arg_count->counter += 2;
 	len--;
 	while (len >= 0)
 	{
-		if (n % 16 > 10)
+		if (n % 16 <= 10)
 			str[len] = '0' + (n % 16);
 		else
-			str[len] = 'a' - 10 + (n % 16);
+			str[len] = 'W' + (n % 16);
 		n = n / 16;
 		len--;
 		arg_count->counter++;
