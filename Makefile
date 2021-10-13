@@ -6,23 +6,23 @@
 #    By: apangraz <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/12 11:48:31 by apangraz          #+#    #+#              #
-#    Updated: 2021/10/12 11:48:31 by apangraz         ###   ########.fr        #
+#    Updated: 2021/10/12 15:41:55 by apangraz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
 SRCS = Srcs/charstring.c \
-	Srcs/int_uint.c \
-	Srcs/hex.c \
-	Srcs/ft_printf.c \
+		Srcs/int_uint.c \
+		Srcs/hex.c \
+		Srcs/ft_printf.c \
 
 OBJS = $(SRCS:.c=.o)
 
-CFLAGS = -Wall -Wextra -Werror -c
+CFLAGS = -Wall -Wextra -Werror
 
 %.o: %.c
-	gcc $(CFLAGS) -I Includes $< -o $(<:.c=.o)
+	gcc -c $(CFLAGS) -I Includes $< -o $(<:.c=.o)
 
 all: $(NAME)
 
